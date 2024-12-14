@@ -30,7 +30,6 @@ def make_prediction(input_data):
     probability = loaded_model.predict_proba(input_df)[0, 1]
     return "Churn" if prediction == 1 else "No Churn", probability
 
-
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -72,8 +71,13 @@ st.markdown(
             text-align: center;
             display: block;
         }}
-        .st-emotion-cache-1q6lfs0 erw9t6i0"{{
+        h3 {{
             text-align: center
+            background-color: #E0115F;
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            display: block;
         }}
     </style>
     """,
@@ -102,51 +106,51 @@ input_data = {
     'TotalCharges': TotalCharges,
 }
 
+col1, col2, col3 = st.columns(3)
 
-if st.button("Predict Churn"):
-    prediction, probability = make_prediction(input_data)
+with col2:
+    if st.button("Predict Churn"):
+        prediction, probability = make_prediction(input_data)
 
-    #  results
-    st.subheader("Prediction")
-    st.write(f"The customer is likely to: **{prediction}**")
-    st.write(f"Probability of churn: **{probability:.2f}**")
+        # Display results
+        st.subheader("Prediction")
+        st.write(f"The customer is likely to: **{prediction}**")
+        st.write(f"Probability of churn: **{probability:.2f}**")
 
-    
-    report = f"""
-    Customer Data:
-    Gender: {gender}
-    Senior Citizen: {SeniorCitizen}
-    Partner: {Partner}
-    Dependents: {Dependents}
-    Tenure (months): {tenure}
-    Phone Service: {PhoneService}
-    Multiple Lines: {MultipleLines}
-    Internet Service: {InternetService}
-    Online Security: {OnlineSecurity}
-    Online Backup: {OnlineBackup}
-    Device Protection: {DeviceProtection}
-    Tech Support: {TechSupport}
-    Streaming TV: {StreamingTV}
-    Streaming Movies: {StreamingMovies}
-    Contract: {Contract}
-    Paperless Billing: {PaperlessBilling}
-    Payment Method: {PaymentMethod}
-    Monthly Charges: {MonthlyCharges}
-    Total Charges: {TotalCharges}
+        report = f"""
+        Customer Data:
+        Gender: {gender}
+        Senior Citizen: {SeniorCitizen}
+        Partner: {Partner}
+        Dependents: {Dependents}
+        Tenure (months): {tenure}
+        Phone Service: {PhoneService}
+        Multiple Lines: {MultipleLines}
+        Internet Service: {InternetService}
+        Online Security: {OnlineSecurity}
+        Online Backup: {OnlineBackup}
+        Device Protection: {DeviceProtection}
+        Tech Support: {TechSupport}
+        Streaming TV: {StreamingTV}
+        Streaming Movies: {StreamingMovies}
+        Contract: {Contract}
+        Paperless Billing: {PaperlessBilling}
+        Payment Method: {PaymentMethod}
+        Monthly Charges: {MonthlyCharges}
+        Total Charges: {TotalCharges}
 
-    Prediction: {prediction}
-    Churn Probability: {probability:.2f}
-    """
+        Prediction: {prediction}
+        Churn Probability: {probability:.2f}
+        """
 
- 
-    report_txt = io.StringIO(report)
+        report_txt = io.StringIO(report)
 
-   
-    st.download_button(
-        label="Download Report",
-        data=report_txt.getvalue(),
-        file_name="churn_prediction_report.txt",
-        mime="text/plain"
-    )
+        st.download_button(
+            label="Download Report",
+            data=report_txt.getvalue(),
+            file_name="churn_prediction_report.txt",
+            mime="text/plain"
+        )
+
 
 
