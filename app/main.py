@@ -38,9 +38,9 @@ page = st.session_state.get("page", "home")  # Default to 'home' if no page set
 if page == "predict_customer_churn":
     import predict_customer_churn
     predict_customer_churn.run()  # Call a function in the file to display its content
-# elif page == "analyze_customer_reviews":
-#     import analyze_customer_reviews
-#     analyze_customer_reviews.run()  # Call a function in the file to display its content
+elif page == "analyze_customer_reviews":
+    import analyze_customer_reviews
+    analyze_customer_reviews.run()  # Call a function in the file to display its content
 else:
     st.write("Welcome to the Customer Insights Application!")
     st.write("Select a feature from the buttons above.")
@@ -58,13 +58,13 @@ st.markdown(
         }}
         p {{
             background-color: #E0115F;
-            color: black;
+            color: white;
             font-weight: bold;
             text-align: center;
             display: block;
         }}
         h3,li,h1 {{
-            color: #E52B50;
+            color: #E62020;
         }}
     </style>
     """,
